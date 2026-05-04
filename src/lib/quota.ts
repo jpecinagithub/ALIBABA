@@ -7,7 +7,10 @@ interface QuotaData {
   [modelId: string]: number;
 }
 
+const isVercel = process.env.VERCEL === '1' || process.env.AWS_LAMBDA_FUNCTION_NAME !== undefined;
+
 function loadQuotas(): QuotaData {
+  if (isVercel) return {};
   try {
     if (existsSync(DATA_FILE)) {
       return JSON.parse(readFileSync(DATA_FILE, 'utf-8'));
@@ -19,7 +22,12 @@ function loadQuotas(): QuotaData {
 }
 
 function saveQuotas(quotas: QuotaData) {
-  writeFileSync(DATA_FILE, JSON.stringify(quotas, null, 2));
+  if (isVercel) return;
+  try {
+    writeFileSync(DATA_FILE, JSON.stringify(quotas, null, 2));
+  } catch (e) {
+    console.error('Failed to save quota data:', e);
+  }
 }
 
 const INITIAL_QUOTAS: QuotaData = {

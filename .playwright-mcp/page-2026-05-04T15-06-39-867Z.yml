@@ -1,0 +1,37 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - button "Volver" [ref=e5]:
+        - img [ref=e6]
+        - text: Volver
+    - main [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e13]: 🖼️ Texto a Imagen
+            - heading "qwen-image" [level=1] [ref=e14]
+            - paragraph [ref=e15]: Modelo base de generación de imágenes de Alibaba
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e19]: Este modelo genera imágenes de forma síncrona. Los resultados se mostrarán en unos segundos.
+            - generic [ref=e20]:
+              - text: "Cuota disponible:"
+              - generic [ref=e21]: 100/100
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - generic [ref=e25]: Prompt
+              - textbox "Describe lo que quieres generar..." [ref=e26]: A beautiful sunset over mountains with pink clouds
+            - generic [ref=e27]:
+              - generic [ref=e28]: Tamaño
+              - generic [ref=e29]:
+                - button "1664x928" [ref=e30]
+                - button "1472x1104" [ref=e31]
+                - button "1328x1328" [ref=e32]
+                - button "1104x1472" [ref=e33]
+                - button "928x1664" [ref=e34]
+            - button "Generar" [ref=e48]
+          - generic [ref=e49]: Error interno
+        - generic [ref=e38]:
+          - img [ref=e39]
+          - paragraph [ref=e43]: Ingresa un prompt y genera para ver el resultado
+  - alert [ref=e44]
