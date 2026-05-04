@@ -11,6 +11,7 @@ export const DASHSCOPE_CONFIG = {
 interface DashScopeInput {
   prompt?: string;
   image?: string;
+  audio?: string;
 }
 
 interface DashScopeOptions {
@@ -109,9 +110,10 @@ export async function callDashScope(
   // ── Omni models ───────────────────────────────────────────────────────────
   // Endpoint: multimodal-generation. Content as array, text response.
   if (modelCategory === 'omni') {
-    const content: Array<{ text?: string; image?: string }> = [];
+    const content: Array<{ text?: string; image?: string; audio?: string }> = [];
     if (input.prompt) content.push({ text: input.prompt });
     if (input.image) content.push({ image: input.image });
+    if (input.audio) content.push({ audio: input.audio });
     const body = {
       model,
       input: {
@@ -131,9 +133,10 @@ export async function callDashScope(
   // ── VL / QVQ models ───────────────────────────────────────────────────────
   // Endpoint: multimodal-generation. Content is an array. Response is text (array).
   if (isVisualModel(model)) {
-    const content: Array<{ text?: string; image?: string }> = [];
+    const content: Array<{ text?: string; image?: string; audio?: string }> = [];
     if (input.prompt) content.push({ text: input.prompt });
     if (input.image) content.push({ image: input.image });
+    if (input.audio) content.push({ audio: input.audio });
     const body = {
       model,
       input: {

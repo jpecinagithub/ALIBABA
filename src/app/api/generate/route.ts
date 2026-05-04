@@ -15,10 +15,11 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { modelId, prompt, image, size } = body as {
+    const { modelId, prompt, image, audio, size } = body as {
       modelId?: string;
       prompt?: string;
       image?: string;
+      audio?: string;
       size?: string;
     };
 
@@ -45,7 +46,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const result = await callDashScope(apiKey, modelId, model.category, { prompt, image }, { size });
+    const result = await callDashScope(apiKey, modelId, model.category, { prompt, image, audio }, { size });
 
     if ('error' in result) {
       console.error(`[DashScope] ${modelId} →`, result.error);

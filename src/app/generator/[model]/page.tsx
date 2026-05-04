@@ -38,7 +38,7 @@ export default function GeneratorPage() {
     } catch (e) {}
   };
   
-  const handleGenerate = async (data: { prompt: string; image?: string; size?: string }) => {
+  const handleGenerate = async (data: { prompt: string; image?: string; audio?: string; size?: string }) => {
     if (!model) return;
     
     setIsGenerating(true);
@@ -54,6 +54,7 @@ export default function GeneratorPage() {
           modelId: model.id,
           prompt: data.prompt,
           image: data.image,
+          audio: data.audio,
           size: data.size,
         }),
       });
@@ -143,6 +144,7 @@ export default function GeneratorPage() {
               <PromptInput
                 category={model.category}
                 requiresImage={model.requiresImage}
+                supportsAudio={model.supportsAudio}
                 sizes={model.options.sizes}
                 onGenerate={handleGenerate}
                 isGenerating={isGenerating}
